@@ -1,0 +1,23 @@
+{
+  "name": "cypress_test1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VirginieT/cypress_test1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VirginieT/cypress_test1/issues"
+  },
+  "homepage": "https://github.com/VirginieT/cypress_test1#readme",
+  "dependencies": {
+    "cypress": "^12.10.0"
+  }
+}
