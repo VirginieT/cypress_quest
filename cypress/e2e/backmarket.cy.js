@@ -14,8 +14,8 @@ describe('Success', () => {
     cy.title().should('include', 'Back Market')
     cy.contains('Nouveau client ? Par ici, s\'il vous plaît.').should('be.visible');
     cy.wait(1000)
-    cy.get('#firstname').type(name)
-    cy.get('#lastname').type(lastname)
+    cy.get('#firstName').type(name)
+    cy.get('#lastName').type(lastname)
     cy.get('#signup-email').type(email)
     cy.get('#signup-password').type(password)
     cy.get('button[type="submit"]').click()
@@ -32,8 +32,8 @@ describe('Fail', () => {
     cy.url().should('include', '/register')
     cy.contains('Nouveau client ? Par ici, s\'il vous plaît.').should('be.visible');
     cy.wait(1000)
-    cy.get('#firstname').type(name)
-    cy.get('#lastname').type(lastname)
+    cy.get('#firstName').type(name)
+    cy.get('#lastName').type(lastname)
     cy.get('#signup-email').type('email@email.com')
     cy.get('#signup-password').type(password)
     cy.get('#signup-password-confirm').type(password)
