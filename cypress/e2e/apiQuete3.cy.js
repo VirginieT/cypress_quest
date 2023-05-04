@@ -1,63 +1,56 @@
-describe('Verify that responses conform to specifications', () => {
-  it('should return HTTP 200 for POST /notes', () => {
+let authToken;
+
+describe('API Tests', () => {
+  before(() => {
     cy.request({
       method: 'POST',
-      url: 'https://practice.expandtesting.com/notes/api/notes',
-      body: {
-        title: 'Test Note',
-        content: 'This is a test note'
-      }
-    }).then(response => {
-      expect(response.status).to.eq(200)
-      expect(response.body).to.have.property('notes')
-      expect(response.body.notes).to.be.an('array')
-    })
-  })
-})
-
-
-describe('Verify that the API handles errors correctly', () => {
-  it('should return HTTP 400 for POST /notes with invalid body', () => {
-    cy.request({
-      method: 'POST',
-      url: 'https://practice.expandtesting.com/notes/api/notes',
-      body: {
-        invalidKey: 'This is not a valid note'
+      url: 'https://practice.expandtesting.com/notes/api/users/login',
+      headers: {
+        accept: "application/json",
       },
-      failOnStatusCode: false
-    }).then(response => {
-      expect(response.status).to.eq(400)
-    })
-  })
+      body: {
+        email: 'swagger@gmail.com',
+        password: 'swagger'
+      },
+    }).then((response) => {
+      expect(response.status).to.eq(200);
+    });
+  });
 
-  it('should return HTTP 404 for GET /notes/{id} when note does not exist', () => {
-    cy.request({
-      method: 'GET',
-      url: 'https://practice.expandtesting.com/notes/api/notes/9999'
-    }).then(response => {
-      expect(response.status).to.eq(404)
-    })
-  })
-})
-
-
-describe('Create Note', () => {
-  const testData = require('../fixtures/quete3.json')
-
-  testData.forEach((data) => {
-    it(`should create a new note with title "${data.title}" and content "${data.content}"`, () => {
+  it('should create a new note', () => {
+    const testData = {
+      title: 'Test Note',
+      description: 'This is a test note',
+      category: 'Home'
+    };
       cy.request({
+        authToken: authToken,
         method: 'POST',
         url: 'https://practice.expandtesting.com/notes/api/notes',
-        body: data
-      }).then(response => {
-        expect(response.status).to.eq(200)
-        expect(response.body.title).to.eq(data.title)
-        expect(response.body.content).to.eq(data.content)
-      })
-    })
-  })
-})
+        headers: {
+          accept: "application/json",
+        },
+        body: testData,
+        failOnStatusCode: false 
+      }).then((response) => {
+        expect(response.status).to.eq(200);
+        expect(response.body.data.title).to.eq(testData.title);
+        expect(response.body.data.description).to.eq(testData.description);
+        expect(response.body.data.category).to.eq(testData.category);
+      });
+});
 
-
-
+  it('should get all notes', () => {
+      cy.request({
+        method: 'GET',
+        url: 'https://practice.expandtesting.com/notes/api/notes',
+        headers: {
+          accept: "application/json",
+        },
+        failOnStatusCode: false 
+      }).then((response) => {
+        expect(response.status).to.eq(200);
+        expect(response.body.success).to.eq(true);
+      });
+    });
+});

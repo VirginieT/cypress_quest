@@ -1,10 +1,12 @@
-[
-  {
-    "title": "Test Note 1",
-    "content": "This is a test note"
+{
+  "validNote": {
+    "title": "Valid note title",
+    "description": "Valid note description",
+    "category": "Home"
   },
-  {
-    "title": "Test Note 2",
-    "content": "This is another test note"
+  "invalidNote": {
+    "title": "",
+    "description": "Invalid note description",
+    "category": "Work"
   }
-]
+}

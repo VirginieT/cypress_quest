@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "status": 200,
+  "message": "Login successful",
+  "data": {
+    "id": "645126f0f86c96021186668f",
+    "name": "swagger",
+    "email": "swagger@gmail.com",
+    "token": "333c531c0c504e4eb126bcc7ac15b3048e44428d38294c4a9606dc8d21600e32"
+  }
+}
