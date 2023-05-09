@@ -38,7 +38,5 @@ describe("File download test from filebin.net", () => {
       cy.contains(fileName).should("be.visible");
     });
   });
-
 });
-
 
